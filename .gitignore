@@ -44,3 +44,7 @@ __pycache__/
 
 # Local warehouse and landed raw files (DuckDB + data/raw); never committed
 data/
+
+# Demo recorder
+demo/node_modules/
+docs/media/.video/

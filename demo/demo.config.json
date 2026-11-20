@@ -1,0 +1,8 @@
+{
+  "start": [
+    { "name": "api", "cmd": "rm -rf data && mkdir data && PYTHONPATH=src uvicorn demeter.api.app:app --port 5205", "ready": "http://localhost:5205/health/ready" },
+    { "name": "web", "cmd": "npm run dev -- --port 6205 --strictPort", "cwd": "web", "ready": "http://localhost:6205" }
+  ],
+  "url": "http://localhost:6205",
+  "viewport": { "width": 1280, "height": 800 }
+}

@@ -31,6 +31,7 @@ main { display: grid; grid-template-columns: 2fr 1fr; gap: var(--sp-md); padding
 .kpi, .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-md); box-shadow: var(--shadow); min-width: 0; }
 .kpi span { display: block; font-size: var(--fs-sm); color: var(--muted); }
 .kpi strong { font-size: var(--fs-xl); font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .kpi { container-type: inline-size; } .kpi strong { font-size: clamp(14px, 14cqi, var(--fs-xl)); white-space: nowrap; } }
 .card h2 { font-size: var(--fs-md); margin: 0 0 var(--sp-sm); }
 .gap { margin-top: var(--sp-lg) !important; }
 .wide { grid-column: 1 / -1; }

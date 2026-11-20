@@ -2,6 +2,16 @@
 
 A data pipeline for Harbourline Lending (fictional), a property lender: it loads borrowers' monthly rent rolls in many layouts, reconciles each file to its own stated total, and feeds a portfolio dashboard where every figure traces back to the exact line of the original file. All names and numbers are invented.
 
+## See it in action
+
+![Demeter walkthrough: an empty dashboard, two borrowers' rent rolls loading, a broken roll quarantined with the exact difference, the corrected roll loading, and a property's figure traced to its source file and line](docs/media/demo.gif)
+
+| Portfolio | Quarantined file | Trace a figure |
+|---|---|---|
+| ![Portfolio dashboard after two rent rolls load](docs/media/portfolio.png) | ![A rent roll quarantined because its rows don't sum to its stated total](docs/media/quarantine.png) | ![A property's rent traced to the source file, line and raw text](docs/media/lineage.png) |
+
+Full-quality video: [docs/media/demo.mp4](docs/media/demo.mp4). Recorded from the running app with `demo/` (`cd demo && npm install && npm run record`); it starts the API on a fresh, empty `data/` directory and uploads the files in `samples/`.
+
 ## Design at a glance
 **Brief.** About 40 borrowers send rent rolls in a dozen layouts, so the portfolio view is rebuilt by hand every month and rarely reconciles first time. The goal: portfolio refreshed within an hour of a file arriving, totals reconciled automatically, files kept unchanged and bad files quarantined, never half-loaded.
 
