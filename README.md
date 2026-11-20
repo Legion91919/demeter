@@ -18,6 +18,19 @@ flowchart LR
   jobs --> duck[(DuckDB<br/>facts + lineage)]
 ```
 
+
+## Run it in GitHub Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Legion91919/demeter?quickstart=1)
+
+The dev container installs the SDKs, restores packages and runs every test once on first start. The same setup works locally with VS Code's Dev Containers extension.
+
+| What | Command | Port |
+|---|---|---|
+| API (FastAPI, docs at /docs) | `PYTHONPATH=src uvicorn demeter.api.app:app --host 0.0.0.0 --port 5205` | 5205 |
+| Dashboard | `cd web && npm run dev` | 5285 |
+| All tests (same as CI) | `scripts/test-all.sh` | - |
+
 ## What it does today (slice 1)
 - Three invented borrower layouts with their own column names, date formats, units and total rows (`samples/`), each with a data contract in `src/demeter/contracts/`.
 - Upload or CLI load: land raw unchanged with a checksum, detect the layout, reconcile rows to the file's total (mismatch: `422`, file quarantined with the difference, nothing loaded), validate rows (bad rows quarantined with line and reason), upsert facts in one transaction.

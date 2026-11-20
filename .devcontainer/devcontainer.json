@@ -1,0 +1,37 @@
+{
+  "name": "demeter",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "forwardPorts": [
+    5205,
+    5285
+  ],
+  "portsAttributes": {
+    "5205": {
+      "label": "API (FastAPI, docs at /docs)",
+      "onAutoForward": "notify"
+    },
+    "5285": {
+      "label": "Dashboard",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "bierner.markdown-mermaid",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+  "hostRequirements": {
+    "cpus": 2
+  }
+}
