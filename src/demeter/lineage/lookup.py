@@ -3,8 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from rentroll.ingest import read_raw_line
-from rentroll.model import Warehouse
+from demeter.ingest import read_raw_line
+from demeter.model import Warehouse
 
 
 def property_lineage(wh: Warehouse, raw_dir: Path, borrower_id: str, property_code: str) -> dict[str, Any] | None:

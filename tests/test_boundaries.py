@@ -7,16 +7,16 @@ from pathlib import Path
 
 import pytest
 
-SRC = Path(__file__).resolve().parent.parent / "src" / "rentroll"
+SRC = Path(__file__).resolve().parent.parent / "src" / "demeter"
 
 # module -> packages it must never import
 FORBIDDEN = {
-    "contracts": {"duckdb", "fastapi", "rentroll.model", "rentroll.api", "rentroll.jobs", "rentroll.ingest"},
-    "reconcile": {"duckdb", "fastapi", "rentroll.model", "rentroll.api", "rentroll.jobs"},
-    "clean": {"duckdb", "fastapi", "rentroll.model", "rentroll.api", "rentroll.jobs"},
-    "ingest": {"duckdb", "fastapi", "rentroll.model", "rentroll.api"},
-    "model": {"fastapi", "rentroll.api", "rentroll.jobs"},
-    "lineage": {"fastapi", "rentroll.api", "rentroll.jobs"},
+    "contracts": {"duckdb", "fastapi", "demeter.model", "demeter.api", "demeter.jobs", "demeter.ingest"},
+    "reconcile": {"duckdb", "fastapi", "demeter.model", "demeter.api", "demeter.jobs"},
+    "clean": {"duckdb", "fastapi", "demeter.model", "demeter.api", "demeter.jobs"},
+    "ingest": {"duckdb", "fastapi", "demeter.model", "demeter.api"},
+    "model": {"fastapi", "demeter.api", "demeter.jobs"},
+    "lineage": {"fastapi", "demeter.api", "demeter.jobs"},
 }
 
 

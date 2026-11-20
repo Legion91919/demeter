@@ -12,11 +12,11 @@ from typing import Any
 from fastapi import FastAPI, File, Form, Request, UploadFile
 from fastapi.responses import JSONResponse
 
-from rentroll import contracts
-from rentroll.config import Clock, Settings, utc_now
-from rentroll.jobs import run_load
-from rentroll.lineage import property_lineage
-from rentroll.model import Warehouse
+from demeter import contracts
+from demeter.config import Clock, Settings, utc_now
+from demeter.jobs import run_load
+from demeter.lineage import property_lineage
+from demeter.model import Warehouse
 
 PROBLEM = "application/problem+json"
 

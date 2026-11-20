@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from rentroll.contracts import Layout, ParsedFile
+from demeter.contracts import Layout, ParsedFile
 
 
 @dataclass(frozen=True)

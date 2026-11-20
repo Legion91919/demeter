@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 from pydantic import ValidationError
 
-from rentroll.contracts import CanonicalRow, Layout, ParsedFile, SourceRow
+from demeter.contracts import CanonicalRow, Layout, ParsedFile, SourceRow
 
 
 @dataclass(frozen=True)

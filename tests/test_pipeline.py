@@ -6,8 +6,8 @@ import hashlib
 from decimal import Decimal
 
 from conftest import KEELRIDGE, MARLOWE, TIDEWATER, TIDEWATER_BAD, VALID
-from rentroll.jobs import run_load
-from rentroll.lineage import property_lineage
+from demeter.jobs import run_load
+from demeter.lineage import property_lineage
 
 
 def load(wh, settings, clock, path, layout=None):

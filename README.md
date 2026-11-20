@@ -1,4 +1,4 @@
-# Rent Roll Pipeline
+# Demeter
 
 A data pipeline for Harbourline Lending (fictional), a property lender: it loads borrowers' monthly rent rolls in many layouts, reconciles each file to its own stated total, and feeds a portfolio dashboard where every figure traces back to the exact line of the original file. All names and numbers are invented.
 
@@ -10,8 +10,8 @@ A data pipeline for Harbourline Lending (fictional), a property lender: it loads
 ```mermaid
 flowchart LR
   analyst[Analyst] --> web[Dashboard<br/>Vite + vanilla TS]
-  web -- /api --> api[FastAPI<br/>rentroll.api]
-  sched[Scheduler] --> cli[rentroll.cli]
+  web -- /api --> api[FastAPI<br/>demeter.api]
+  sched[Scheduler] --> cli[demeter.cli]
   api --> jobs[Load job<br/>contracts · reconcile · clean]
   cli --> jobs
   jobs --> raw[(data/raw<br/>sha256.csv)]
@@ -19,7 +19,7 @@ flowchart LR
 ```
 
 ## What it does today (slice 1)
-- Three invented borrower layouts with their own column names, date formats, units and total rows (`samples/`), each with a data contract in `src/rentroll/contracts/`.
+- Three invented borrower layouts with their own column names, date formats, units and total rows (`samples/`), each with a data contract in `src/demeter/contracts/`.
 - Upload or CLI load: land raw unchanged with a checksum, detect the layout, reconcile rows to the file's total (mismatch: `422`, file quarantined with the difference, nothing loaded), validate rows (bad rows quarantined with line and reason), upsert facts in one transaction.
 - Re-runnable: the same file twice gives no duplicates; a corrected file replaces that borrower's month. Every job run records rows read, written and rejected, duration and status.
 - Portfolio: occupancy and contracted monthly rent per property, data freshness, files in quarantine.
@@ -29,14 +29,14 @@ flowchart LR
 ## Run locally
 ```bash
 pip install -r requirements.lock
-PYTHONPATH=src uvicorn rentroll.api.app:app --port 5205     # API (OpenAPI at /docs)
+PYTHONPATH=src uvicorn demeter.api.app:app --port 5205     # API (OpenAPI at /docs)
 cd web && npm ci && npm run dev                              # dashboard on http://localhost:5285
 pytest                                                       # 42 tests
 ```
 Smoke test, CLI and incidents: `.agentic/runbook.md`.
 
 ## How this project is organised
-- `src/rentroll/`: `contracts/`, `ingest/`, `clean/`, `reconcile/`, `model/`, `lineage/`, `api/`, `jobs.py`, `cli.py`.
+- `src/demeter/`: `contracts/`, `ingest/`, `clean/`, `reconcile/`, `model/`, `lineage/`, `api/`, `jobs.py`, `cli.py`.
 - `tests/`: contract, rule, pipeline, API and boundary tests (pytest).
 - `samples/`: invented rent rolls, rebuilt by `tools/make_samples.py` (one is broken on purpose).
 - `web/`: Vite + vanilla TypeScript dashboard with Vitest tests.

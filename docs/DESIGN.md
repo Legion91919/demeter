@@ -1,4 +1,4 @@
-# Rent Roll Pipeline design dossier
+# Demeter design dossier
 
 > Harbourline Lending is a fictional lender. Every borrower, property, tenant and amount here is invented. Amounts are in rand (R).
 
@@ -77,17 +77,17 @@ One machine handles this about a thousand times over. The binding constraint is 
 ```mermaid
 flowchart LR
   borrower[Borrower<br/>sends monthly rent roll CSV] -->|email or portal today| analyst[Portfolio analyst]
-  analyst -->|uploads file, reads dashboard| system[Rent Roll Pipeline]
+  analyst -->|uploads file, reads dashboard| system[Demeter]
   committee[Credit committee] -->|reads monthly| system
-  ops[Scheduler or engineer] -->|python -m rentroll.cli load| system
+  ops[Scheduler or engineer] -->|python -m demeter.cli load| system
 ```
 
 ### C4 container
 ```mermaid
 flowchart LR
-  web[Dashboard<br/>Vite + vanilla TS] -- JSON over /api --> api[API<br/>FastAPI + uvicorn<br/>rentroll.api]
-  cli[CLI job<br/>rentroll.cli] --> jobs
-  api --> jobs[Load job<br/>rentroll.jobs]
+  web[Dashboard<br/>Vite + vanilla TS] -- JSON over /api --> api[API<br/>FastAPI + uvicorn<br/>demeter.api]
+  cli[CLI job<br/>demeter.cli] --> jobs
+  api --> jobs[Load job<br/>demeter.jobs]
   jobs --> ingest[ingest<br/>raw landing]
   jobs --> contracts[contracts<br/>keelridge · marlowe · tidewater]
   jobs --> reconcile[reconcile]
@@ -120,7 +120,7 @@ Endpoints: `POST /api/loads`, `GET /api/job-runs`, `GET /api/job-runs/{id}`, `GE
 sequenceDiagram
   actor A as Analyst
   participant W as Dashboard
-  participant API as rentroll.api
+  participant API as demeter.api
   participant J as jobs.run_load
   participant I as ingest
   participant C as contracts / reconcile / clean

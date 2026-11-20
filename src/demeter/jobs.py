@@ -11,15 +11,15 @@ import time
 import uuid
 from typing import Any
 
-from rentroll import contracts
-from rentroll.clean import clean
-from rentroll.config import Clock, Settings, utc_now
-from rentroll.contracts import LayoutError
-from rentroll.ingest import land
-from rentroll.model import Warehouse
-from rentroll.reconcile import reconcile
+from demeter import contracts
+from demeter.clean import clean
+from demeter.config import Clock, Settings, utc_now
+from demeter.contracts import LayoutError
+from demeter.ingest import land
+from demeter.model import Warehouse
+from demeter.reconcile import reconcile
 
-log = logging.getLogger("rentroll.jobs")
+log = logging.getLogger("demeter.jobs")
 
 
 def run_load(

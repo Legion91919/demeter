@@ -17,9 +17,9 @@ from typing import Any
 
 import duckdb
 
-from rentroll.clean import Reject
-from rentroll.contracts import CanonicalRow, SourceRow
-from rentroll.ingest import LandedFile
+from demeter.clean import Reject
+from demeter.contracts import CanonicalRow, SourceRow
+from demeter.ingest import LandedFile
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS raw_files (

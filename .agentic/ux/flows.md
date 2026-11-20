@@ -9,7 +9,7 @@
 4. Analyst selects a property row; the lineage panel calls `GET /api/properties/{borrower_id}/{property_code}/lineage` and lists each unit with source file, line and job run id, plus the raw line.
 
 ## 2. Re-run a load (operations)
-1. Engineer runs `python -m rentroll.cli load <file>` (or re-uploads). The same bytes produce no duplicates; a new job run is recorded.
+1. Engineer runs `python -m demeter.cli load <file>` (or re-uploads). The same bytes produce no duplicates; a new job run is recorded.
 2. A corrected file for the same borrower and month replaces the earlier rows completely.
 
 ## 3. Review quarantine

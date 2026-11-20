@@ -34,17 +34,17 @@ Stack: Python 3.12, pydantic contracts, FastAPI + uvicorn, DuckDB (one file unde
 ```mermaid
 flowchart LR
   borrower[Borrower] -->|monthly rent roll CSV| analyst[Portfolio analyst]
-  analyst -->|POST /api/loads| api[rentroll.api]
+  analyst -->|POST /api/loads| api[demeter.api]
   committee[Credit committee] -->|dashboard| web[web/ Vite + TS]
   web -->|/api via dev proxy :5205| api
-  ops[Scheduler] -->|python -m rentroll.cli load| jobs[rentroll.jobs]
+  ops[Scheduler] -->|python -m demeter.cli load| jobs[demeter.jobs]
   api --> jobs
   jobs --> raw[(data/raw sha256.csv)]
   jobs --> duck[(data/warehouse.duckdb)]
 ```
 
 ## Modules and boundaries
-Medallion layers inside one Clean Architecture deployable (`src/rentroll/`):
+Medallion layers inside one Clean Architecture deployable (`src/demeter/`):
 
 | Module | Owns | May call |
 |---|---|---|

@@ -1,5 +1,5 @@
 import './styles.css';
-import { ApiError, getJobRuns, getLineage, getPortfolio, uploadRentRoll } from './api';
+import { ApiError, getJobRuns, getLineage, getPortfolio, uploadDemeter } from './api';
 import * as view from './render';
 import type { Portfolio } from './types';
 
@@ -70,7 +70,7 @@ $<HTMLFormElement>('upload').addEventListener('submit', async (ev) => {
   button.disabled = true;
   $('upload-result').textContent = 'Loading file…';
   try {
-    $('upload-result').innerHTML = view.uploadResult(await uploadRentRoll(file));
+    $('upload-result').innerHTML = view.uploadResult(await uploadDemeter(file));
   } catch (err) {
     const p = err instanceof ApiError ? err.problem : { title: 'Upload failed', detail: message(err) };
     $('upload-result').innerHTML = view.uploadProblem(p.title, p.detail);

@@ -8,10 +8,10 @@ from decimal import Decimal
 import pytest
 
 from conftest import KEELRIDGE, MARLOWE, TIDEWATER, TIDEWATER_BAD
-from rentroll import contracts
-from rentroll.clean import clean
-from rentroll.contracts.base import parse_amount
-from rentroll.reconcile import reconcile
+from demeter import contracts
+from demeter.clean import clean
+from demeter.contracts.base import parse_amount
+from demeter.reconcile import reconcile
 
 
 def parse(path):

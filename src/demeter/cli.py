@@ -1,6 +1,6 @@
 """Command-line entry point for scheduled or manual loads.
 
-    PYTHONPATH=src python -m rentroll.cli load samples/*.csv [--layout keelridge]
+    PYTHONPATH=src python -m demeter.cli load samples/*.csv [--layout keelridge]
 Exit code 0 when every file loaded, 1 when any file was quarantined or failed.
 """
 
@@ -11,13 +11,13 @@ import json
 import sys
 from pathlib import Path
 
-from rentroll.config import Settings
-from rentroll.jobs import run_load
-from rentroll.model import Warehouse
+from demeter.config import Settings
+from demeter.jobs import run_load
+from demeter.model import Warehouse
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="rentroll")
+    parser = argparse.ArgumentParser(prog="demeter")
     sub = parser.add_subparsers(dest="command", required=True)
     load = sub.add_parser("load", help="land, reconcile and load rent-roll files")
     load.add_argument("files", nargs="+", type=Path)

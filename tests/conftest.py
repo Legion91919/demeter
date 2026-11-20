@@ -7,9 +7,9 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
-from rentroll.api.app import create_app
-from rentroll.config import Settings
-from rentroll.model import Warehouse
+from demeter.api.app import create_app
+from demeter.config import Settings
+from demeter.model import Warehouse
 
 SAMPLES = Path(__file__).resolve().parent.parent / "samples"
 KEELRIDGE = SAMPLES / "keelridge-estates_2026-10.csv"

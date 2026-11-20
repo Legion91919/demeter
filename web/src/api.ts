@@ -24,7 +24,7 @@ export const getLineage = (borrowerId: string, propertyCode: string): Promise<Li
     json<Lineage>(r),
   );
 
-export function uploadRentRoll(file: File): Promise<JobRun> {
+export function uploadDemeter(file: File): Promise<JobRun> {
   const form = new FormData();
   form.append('file', file);
   return fetch('/api/loads', { method: 'POST', body: form }).then((r) => json<JobRun>(r));
