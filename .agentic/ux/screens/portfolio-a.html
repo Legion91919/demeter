@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><title>Portfolio - variant A (dense table)</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#f4f6f5;--surface:#fff;--surface-2:#eef2f1;--border:#d5dcdb;--text:#12202b;--muted:#4d5a66;--accent:#0b5d6b;--on-accent:#fff;--bar:#00809a;--track:#dfe7e7;--success:#1b6a43;--warning:#7a5200;--danger:#a3261f;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;--xs:4px;--sm:8px;--md:16px;--lg:24px;--xl:40px;--r-sm:4px;--r-md:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font)}
+header{display:flex;align-items:center;gap:var(--sm);padding:var(--sm) var(--lg);background:var(--accent);color:var(--on-accent)}
+header b{font-size:17px;letter-spacing:.02em}header small{opacity:.85;margin-left:auto}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+table{border-collapse:collapse;width:100%}th,td{padding:6px var(--sm);border-bottom:1px solid var(--border);text-align:left}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+.meter{display:inline-block;width:90px;height:8px;background:var(--track);border-radius:4px;vertical-align:middle;margin-right:6px}
+.meter i{display:block;height:100%;background:var(--bar);border-radius:4px}
+.chip{display:inline-flex;gap:4px;align-items:center;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;border:1px solid currentColor}
+.ok{color:var(--success)}.warn{color:var(--warning)}.bad{color:var(--danger)}.muted{color:var(--muted)}
+</style>
+<style>main{padding:var(--md) var(--lg)}.bar{display:flex;gap:var(--lg);font-size:13px;color:var(--muted);margin-bottom:var(--sm)}kbd{font:12px var(--mono);border:1px solid var(--border);padding:0 4px;border-radius:3px;background:var(--surface)}
+tbody tr:hover,tbody tr:focus{background:var(--surface-2);outline:none}section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:var(--md)}h2{font-size:13px;margin:0;padding:var(--sm);border-bottom:1px solid var(--border)}</style></head><body>
+<header><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="6" fill="#fff"/><path d="M7 6v14M19 6v14M7 12h12" stroke="#0b5d6b" stroke-width="2.6" stroke-linecap="round"/><path d="M4 21c3-2 6 2 9 0s6 2 9 0" stroke="#00809a" stroke-width="1.6" fill="none"/></svg><b>Harbourline</b><span>Portfolio</span><small>Data as of 31 Oct 2026 &middot; last load 06:02 today</small></header>
+<main><div class="bar"><span>6 properties</span><span>22 units</span><span>72.7% occupied</span><span>R 384,282.42 / month</span><span class="bad">1 file quarantined</span><span style="margin-left:auto"><kbd>j</kbd>/<kbd>k</kbd> move &middot; <kbd>Enter</kbd> lineage</span></div>
+<section><h2>Occupancy and rent per property</h2><table><thead><tr><th>Property</th><th>Borrower</th><th class="num">Units</th><th class="num">Occupied</th><th>Occupancy</th><th class="num">Rent / month</th><th>Source file</th></tr></thead><tbody>
+<tr tabindex="0"><td>Anchor Point Offices</td><td>Keelridge Estates</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">109,790.25</td><td class="muted">keelridge-estates_2026-10.csv</td></tr>
+<tr tabindex="0"><td>Keelridge Quay</td><td>Keelridge Estates</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">54,725.50</td><td class="muted">keelridge-estates_2026-10.csv</td></tr>
+<tr tabindex="0"><td>Harbour Lofts</td><td>Marlowe Bay Properties</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">33,925.00</td><td class="muted">marlowe-bay_2026-10.csv</td></tr>
+<tr tabindex="0"><td>Ropewalk Yard</td><td>Marlowe Bay Properties</td><td class="num">4</td><td class="num">2</td><td><span class="meter"><i style="width:50%"></i></span>50.0%</td><td class="num">68,150.00</td><td class="muted">marlowe-bay_2026-10.csv</td></tr>
+<tr tabindex="0"><td>Breakwater House</td><td>Tidewater Living</td><td class="num">2</td><td class="num">2</td><td><span class="meter"><i style="width:100%"></i></span>100.0%</td><td class="num">74,041.67</td><td class="muted">tidewater-living_2026-10_v2.csv</td></tr>
+<tr tabindex="0"><td>Tidewater Mews</td><td>Tidewater Living</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">43,650.00</td><td class="muted">tidewater-living_2026-10_v2.csv</td></tr>
+</tbody></table></section>
+<section><h2>Job runs</h2><table><thead><tr><th>File</th><th>Status</th><th class="num">Read</th><th class="num">Written</th><th class="num">Rejected</th><th>Message</th></tr></thead><tbody>
+<tr><td>marlowe-bay_2026-10.csv</td><td><span class="chip warn">&#9888; loaded</span></td><td class="num">9</td><td class="num">8</td><td class="num">1</td><td>reconciled and loaded; 1 row(s) quarantined</td></tr>
+<tr><td>tidewater-living_2026-10_v1-bad-total.csv</td><td><span class="chip bad">&#10005; quarantined</span></td><td class="num">6</td><td class="num">0</td><td class="num">6</td><td>rows sum to 1,412,300.00 annual rent but the total row states 1,408,300.00</td></tr>
+</tbody></table></section></main></body></html>

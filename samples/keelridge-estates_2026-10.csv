@@ -1,0 +1,10 @@
+property_code,property_name,unit_no,tenant,lease_start,lease_end,monthly_rent,status,roll_date
+KR-01,Keelridge Quay,101,Saltmarsh Bakery,2024-03-01,2027-02-28,18450.00,OCCUPIED,2026-10-31
+KR-01,Keelridge Quay,102,Pebble Lane Optometry,2025-01-01,2027-12-31,15200.00,OCCUPIED,2026-10-31
+KR-01,Keelridge Quay,103,Northlight Dental,2023-07-01,2026-06-30,21075.50,OCCUPIED,2026-10-31
+KR-01,Keelridge Quay,104,,,,0.00,VACANT,2026-10-31
+KR-02,Anchor Point Offices,2A,Fathom Analytics,2024-09-01,2029-08-31,42300.00,OCCUPIED,2026-10-31
+KR-02,Anchor Point Offices,2B,Brightwater Law,2022-04-01,2027-03-31,39850.00,OCCUPIED,2026-10-31
+KR-02,Anchor Point Offices,3A,,,,0.00,VACANT,2026-10-31
+KR-02,Anchor Point Offices,3B,Gullwing Travel,2025-06-01,2028-05-31,27640.25,OCCUPIED,2026-10-31
+TOTAL,,,,,,164515.75,,

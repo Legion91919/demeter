@@ -32,3 +32,15 @@ denylist.txt
 *.safetensors
 
 # Note: .agentic/ is deliberately NOT ignored. It is the project's memory.
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+.venv/
+*.egg-info/
+
+# Local warehouse and landed raw files (DuckDB + data/raw); never committed
+data/

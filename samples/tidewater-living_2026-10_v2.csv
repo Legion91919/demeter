@@ -1,0 +1,8 @@
+PropID,PropName,UnitRef,Occupant,StartDate,EndDate,AnnualRent,Vacant,Period
+TW7,Tidewater Mews,A1,Kelp & Co Florist,01-Jun-2025,31-May-2027,198000.00,FALSE,2026-10
+TW7,Tidewater Mews,A2,Ebbtide Physio,01-Jan-2024,31-Dec-2026,171600.00,FALSE,2026-10
+TW7,Tidewater Mews,A3,,,,0.00,TRUE,2026-10
+TW7,Tidewater Mews,B1,Shoreline Tutors,01-Mar-2026,28-Feb-2029,154200.00,FALSE,2026-10
+TW9,Breakwater House,1,Cormorant Insurance Brokers,01-Oct-2023,30-Sep-2028,486000.00,FALSE,2026-10
+TW9,Breakwater House,2,Sandbar Architects,01-Feb-2025,31-Jan-2030,402500.00,FALSE,2026-10
+,TOTALS,,,,,1412300.00,,

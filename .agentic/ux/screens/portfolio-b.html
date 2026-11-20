@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><title>Portfolio - variant B (summary cards)</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#f4f6f5;--surface:#fff;--surface-2:#eef2f1;--border:#d5dcdb;--text:#12202b;--muted:#4d5a66;--accent:#0b5d6b;--on-accent:#fff;--bar:#00809a;--track:#dfe7e7;--success:#1b6a43;--warning:#7a5200;--danger:#a3261f;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;--xs:4px;--sm:8px;--md:16px;--lg:24px;--xl:40px;--r-sm:4px;--r-md:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font)}
+header{display:flex;align-items:center;gap:var(--sm);padding:var(--sm) var(--lg);background:var(--accent);color:var(--on-accent)}
+header b{font-size:17px;letter-spacing:.02em}header small{opacity:.85;margin-left:auto}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+table{border-collapse:collapse;width:100%}th,td{padding:6px var(--sm);border-bottom:1px solid var(--border);text-align:left}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+.meter{display:inline-block;width:90px;height:8px;background:var(--track);border-radius:4px;vertical-align:middle;margin-right:6px}
+.meter i{display:block;height:100%;background:var(--bar);border-radius:4px}
+.chip{display:inline-flex;gap:4px;align-items:center;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;border:1px solid currentColor}
+.ok{color:var(--success)}.warn{color:var(--warning)}.bad{color:var(--danger)}.muted{color:var(--muted)}
+</style>
+<style>main{padding:var(--lg);max-width:1180px;margin:auto}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--md);margin-bottom:var(--lg)}
+.kpi,.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--md)}.kpi span{display:block;font-size:13px;color:var(--muted)}.kpi strong{font-size:26px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--md)}.card h3{margin:0;font-size:16px}.card p{margin:2px 0 var(--sm);color:var(--muted);font-size:13px}.card .big{font-size:22px;font-variant-numeric:tabular-nums}.card .meter{width:100%;height:10px}</style></head><body>
+<header><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="6" fill="#fff"/><path d="M7 6v14M19 6v14M7 12h12" stroke="#0b5d6b" stroke-width="2.6" stroke-linecap="round"/><path d="M4 21c3-2 6 2 9 0s6 2 9 0" stroke="#00809a" stroke-width="1.6" fill="none"/></svg><b>Harbourline</b><span>Portfolio overview</span><small>As of 31 Oct 2026</small></header>
+<main><div class="kpis"><div class="kpi"><span>Portfolio occupancy</span><strong>72.7%</strong></div><div class="kpi"><span>Contracted rent / month</span><strong>R 384,282</strong></div><div class="kpi"><span>Properties reconciled</span><strong>6 of 6</strong></div><div class="kpi"><span>Files in quarantine</span><strong class="bad">&#10005; 1</strong></div></div>
+<div class="grid">
+<div class="card"><h3>Breakwater House</h3><p>Tidewater Living &middot; 2 units</p><div class="big">100.0%</div><span class="meter"><i style="width:100%"></i></span><p>R 74,041.67 / month &middot; <span class="ok">&#10003; reconciled</span></p></div>
+<div class="card"><h3>Anchor Point Offices</h3><p>Keelridge Estates &middot; 4 units</p><div class="big">75.0%</div><span class="meter"><i style="width:75%"></i></span><p>R 109,790.25 / month &middot; <span class="ok">&#10003; reconciled</span></p></div>
+<div class="card"><h3>Keelridge Quay</h3><p>Keelridge Estates &middot; 4 units</p><div class="big">75.0%</div><span class="meter"><i style="width:75%"></i></span><p>R 54,725.50 / month &middot; <span class="ok">&#10003; reconciled</span></p></div>
+<div class="card"><h3>Harbour Lofts</h3><p>Marlowe Bay Properties &middot; 4 units</p><div class="big">75.0%</div><span class="meter"><i style="width:75%"></i></span><p>R 33,925.00 / month &middot; <span class="warn">&#9888; 1 row quarantined</span></p></div>
+<div class="card"><h3>Tidewater Mews</h3><p>Tidewater Living &middot; 4 units</p><div class="big">75.0%</div><span class="meter"><i style="width:75%"></i></span><p>R 43,650.00 / month &middot; <span class="ok">&#10003; reconciled</span></p></div>
+<div class="card"><h3>Ropewalk Yard</h3><p>Marlowe Bay Properties &middot; 4 units</p><div class="big">50.0%</div><span class="meter"><i style="width:50%"></i></span><p>R 68,150.00 / month &middot; <span class="ok">&#10003; reconciled</span></p></div>
+</div></main></body></html>

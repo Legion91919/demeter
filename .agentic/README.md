@@ -3,7 +3,7 @@
 | Question | File |
 |---|---|
 | What problem, for whom, what does success look like? | `product.md` |
-| How is it built and why? | `architecture.md`, `decisions/` |
+| How is it built and why? | `architecture.md`, `decisions/`, `../docs/DESIGN.md` |
 | What does it look like? | `ux/` (design tokens, screens, flows) |
 | What is being built next? | `backlog.md` |
 | Where did the last session stop? | `next-step.md` |

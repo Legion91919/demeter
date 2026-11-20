@@ -1,0 +1,13 @@
+Marlowe Bay Properties - Rent Schedule
+Statement date: 31/10/2026
+Building,Suite,Lessee,Commencement,Expiry,"Rent p/m",Occupied (Y/N)
+Harbour Lofts,G01,Tern & Co Studio,01/02/2025,31/01/2028,"12,800.00",Y
+Harbour Lofts,G02,Driftwood Coffee,15/08/2024,14/08/2027,"9,650.00",Y
+Harbour Lofts,101,,,,"0.00",N
+Harbour Lofts,102,Lanternfish Games,01/11/2023,31/10/2026,"11,475.00",Y
+Harbour Lofts,,Coastline Print Shop,01/03/2025,28/02/2027,"8,200.00",Y
+Ropewalk Yard,U1,Seabright Joinery,01/05/2022,30/04/2027,"31,250.00",Y
+Ropewalk Yard,U2,Mooring Line Logistics,01/09/2025,31/08/2030,"36,900.00",Y
+Ropewalk Yard,U3,,,,"0.00",N
+Ropewalk Yard,U4,,,,"0.00",N
+Grand Total,9 units,,,,"110,275.00",

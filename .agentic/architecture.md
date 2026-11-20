@@ -28,15 +28,42 @@ Record the final choice with write_adr, including what you rejected.
 
 Judgement: Build one re-runnable import job per layout into a single warehouse, with a plain read-only dashboard on top. See `decisions/0001-architecture-style.md`.
 
+Stack: Python 3.12, pydantic contracts, FastAPI + uvicorn, DuckDB (one file under `data/`), Vite + vanilla TypeScript dashboard. See `decisions/0002-python-duckdb-stack.md`. Reconcile/reject policy: `decisions/0003-reconcile-and-reject-policy.md`. Full dossier: `docs/DESIGN.md`.
+
 ## Context
 ```mermaid
 flowchart LR
-  user[User] --> app[This system]
-  app --> ext[External system]
+  borrower[Borrower] -->|monthly rent roll CSV| analyst[Portfolio analyst]
+  analyst -->|POST /api/loads| api[rentroll.api]
+  committee[Credit committee] -->|dashboard| web[web/ Vite + TS]
+  web -->|/api via dev proxy :5205| api
+  ops[Scheduler] -->|python -m rentroll.cli load| jobs[rentroll.jobs]
+  api --> jobs
+  jobs --> raw[(data/raw sha256.csv)]
+  jobs --> duck[(data/warehouse.duckdb)]
 ```
 
 ## Modules and boundaries
-TODO: each module, what it owns, what it may call.
+Medallion layers inside one Clean Architecture deployable (`src/rentroll/`):
+
+| Module | Owns | May call |
+|---|---|---|
+| `contracts/` | one pydantic row model + `Layout` per borrower layout (`keelridge`, `marlowe`, `tidewater`), `CanonicalRow`, detection | nothing |
+| `ingest/` | raw landing: bytes stored unchanged as `data/raw/<sha256>.csv` (read-only) | filesystem |
+| `reconcile/` | sum of every data row vs the file's total row, in the file's own unit; unit count | `contracts` |
+| `clean/` | contract + shared rules per row; rejects with line and reason | `contracts` |
+| `model/` | DuckDB schema and writes: `raw_files`, `job_runs`, `quarantine_files`, `quarantine_rows`, `dim_borrower`, `dim_property`, `fact_unit_rent`; portfolio query | `contracts`, `clean`, `ingest` types |
+| `lineage/` | figure -> file, line, job run, raw line | `model`, `ingest` |
+| `jobs.py` | the load workflow, job-run bookkeeping | all above |
+| `api/` | FastAPI endpoints, problem+json, health | `jobs`, `lineage`, `model` |
+| `cli.py` | scheduled/manual loads | `jobs` |
+
+`tests/test_boundaries.py` fails if an inner module imports DuckDB, FastAPI or an outer module.
 
 ## Cross-cutting
-TODO: auth, logging, tracing, configuration, error handling.
+- **Auth:** none in slice 1 (local, invented data). Next: SSO at a reverse proxy, roles analyst/committee.
+- **Logging:** one structured log line per job run (read, written, rejected, ms, status); the `job_runs` table is the durable record.
+- **Configuration:** env vars `RENTROLL_DATA_DIR`, `RENTROLL_MAX_UPLOAD_BYTES` (`.env.example`).
+- **Errors:** RFC 7807 problem+json; a quarantined file is `422` with the reason and the job run; unexpected errors close the job run as `failed`.
+- **Time and money:** UTC timestamps (injectable clock), `Decimal` / `DECIMAL(18,2)`, money as strings in JSON.
+- **Idempotency:** content checksum for raw files; natural-key upsert `(borrower_id, property_code, unit_ref, as_of_date)` for facts.

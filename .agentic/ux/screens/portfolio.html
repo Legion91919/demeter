@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harbourline portfolio - final (A table + B KPIs + C status chips + lineage)</title>
+<style>
+:root{--bg:#f4f6f5;--surface:#fff;--surface-2:#eef2f1;--border:#d5dcdb;--text:#12202b;--muted:#4d5a66;--accent:#0b5d6b;--on-accent:#fff;--bar:#00809a;--track:#dfe7e7;--success:#1b6a43;--warning:#7a5200;--danger:#a3261f;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;--sm:8px;--md:16px;--lg:24px;--r-sm:4px;--r-md:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--font)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sm);padding:var(--sm) var(--lg);background:var(--accent);color:var(--on-accent)}
+header b{font-size:17px}header .fresh{margin-left:auto;font-size:13px}
+.switch{display:flex;gap:4px;padding:var(--sm) var(--lg);font-size:13px;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.switch button{font:inherit;border:1px solid var(--border);background:var(--surface);border-radius:var(--r-sm);padding:2px 10px;cursor:pointer}
+.switch button[aria-pressed=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+main{padding:var(--md) var(--lg);display:grid;gap:var(--md);grid-template-columns:2fr 1fr;max-width:1400px;margin:auto}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.kpis{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--md)}@media(max-width:600px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi,.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--md)}
+.kpi span{display:block;font-size:13px;color:var(--muted)}.kpi strong{font-size:26px;font-variant-numeric:tabular-nums}
+.card h2{font-size:15px;margin:0 0 var(--sm)}.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}th,td{padding:6px var(--sm);border-bottom:1px solid var(--border);text-align:left;font-size:14px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tbody tr.sel{background:var(--surface-2);box-shadow:inset 3px 0 var(--accent)}tbody tr[tabindex]:hover{background:var(--surface-2);cursor:pointer}
+.meter{display:inline-block;width:80px;height:8px;background:var(--track);border-radius:4px;vertical-align:middle;margin-right:6px}.meter i{display:block;height:100%;background:var(--bar);border-radius:4px}
+.chip{display:inline-flex;gap:4px;font-size:12px;font-weight:600;padding:0 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.ok{color:var(--success)}.warn{color:var(--warning)}.bad{color:var(--danger)}.muted{color:var(--muted)}
+.drop{border:2px dashed var(--border);border-radius:var(--r-md);padding:var(--md);text-align:center;color:var(--muted)}
+button.primary{font:inherit;background:var(--accent);color:var(--on-accent);border:0;border-radius:var(--r-sm);padding:6px 12px}
+.note{border-left:4px solid var(--danger);background:var(--surface-2);padding:var(--sm);margin-top:var(--sm);font-size:13px}
+.raw{font:12px var(--mono);color:var(--muted);word-break:break-all}
+.skel{height:14px;background:var(--track);border-radius:4px;margin:10px 0;animation:p 1.2s infinite alternate}@keyframes p{to{opacity:.4}}
+.wide{grid-column:1/-1}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="6" fill="#fff"/><path d="M7 6v14M19 6v14M7 12h12" stroke="#0b5d6b" stroke-width="2.6" stroke-linecap="round"/><path d="M4 21c3-2 6 2 9 0s6 2 9 0" stroke="#00809a" stroke-width="1.6" fill="none"/></svg>
+  <b>Harbourline</b><span>Portfolio</span>
+  <span class="fresh" data-state="success">Data as of 31 Oct 2026 &middot; last load 06:02 today</span>
+  <span class="fresh" data-state="loading" hidden>Checking data&hellip;</span>
+  <span class="fresh" data-state="empty" hidden>No data loaded yet</span>
+  <span class="fresh" data-state="error" hidden>Freshness unknown</span>
+</header>
+<div class="switch" role="group" aria-label="Preview state">
+  <span>Preview state:</span>
+  <button aria-pressed="false" data-s="loading">Loading</button><button aria-pressed="false" data-s="empty">Empty</button>
+  <button aria-pressed="false" data-s="error">Error</button><button aria-pressed="true" data-s="success">Success</button>
+</div>
+<main>
+  <section class="kpis" aria-label="Portfolio summary">
+    <div class="kpi"><span>Portfolio occupancy</span><strong data-state="success">72.7%</strong><strong data-state="loading empty error" hidden>&ndash;</strong></div>
+    <div class="kpi"><span>Contracted rent / month</span><strong data-state="success">R 384,282.42</strong><strong data-state="loading empty error" hidden>&ndash;</strong></div>
+    <div class="kpi"><span>Properties &middot; units</span><strong data-state="success">6 &middot; 22</strong><strong data-state="loading empty error" hidden>&ndash;</strong></div>
+    <div class="kpi"><span>Files in quarantine</span><strong class="bad" data-state="success">&#10005; 1</strong><strong data-state="loading empty error" hidden>&ndash;</strong></div>
+  </section>
+
+  <section class="card" aria-labelledby="t-prop">
+    <h2 id="t-prop">Which properties are let, and for how much? <span class="muted">(latest roll per borrower)</span></h2>
+    <div data-state="loading" hidden aria-busy="true"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+    <p data-state="empty" hidden class="muted">No rent rolls loaded. Drop a borrower's file in the panel on the right.</p>
+    <div data-state="error" hidden class="note">Could not reach the portfolio service (503: warehouse unavailable). <button class="primary">Retry</button></div>
+    <div class="scroll" data-state="success"><table>
+      <thead><tr><th>Property</th><th>Borrower</th><th class="num">Units</th><th class="num">Let</th><th>Occupancy</th><th class="num">Rent / month</th></tr></thead>
+      <tbody>
+        <tr tabindex="0"><td>Anchor Point Offices</td><td>Keelridge Estates</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">109,790.25</td></tr>
+        <tr tabindex="0" class="sel" aria-selected="true"><td>Keelridge Quay</td><td>Keelridge Estates</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">54,725.50</td></tr>
+        <tr tabindex="0"><td>Harbour Lofts</td><td>Marlowe Bay Properties</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">33,925.00</td></tr>
+        <tr tabindex="0"><td>Ropewalk Yard</td><td>Marlowe Bay Properties</td><td class="num">4</td><td class="num">2</td><td><span class="meter"><i style="width:50%"></i></span>50.0%</td><td class="num">68,150.00</td></tr>
+        <tr tabindex="0"><td>Breakwater House</td><td>Tidewater Living</td><td class="num">2</td><td class="num">2</td><td><span class="meter"><i style="width:100%"></i></span>100.0%</td><td class="num">74,041.67</td></tr>
+        <tr tabindex="0"><td>Tidewater Mews</td><td>Tidewater Living</td><td class="num">4</td><td class="num">3</td><td><span class="meter"><i style="width:75%"></i></span>75.0%</td><td class="num">43,650.00</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <aside class="card" aria-labelledby="t-up">
+    <h2 id="t-up">Load a rent roll</h2>
+    <div class="drop">Drop a CSV here or <button class="primary" type="button">Choose file</button></div>
+    <div class="note" data-state="success"><b class="bad">&#10005; Quarantined:</b> tidewater-living_2026-10_v1-bad-total.csv. Rows sum to 1,412,300.00 annual rent but the total row (line 8) states 1,408,300.00 (difference +4,000.00). Nothing was loaded.</div>
+    <h2 style="margin-top:var(--md)">Trace: Keelridge Quay</h2>
+    <p data-state="loading empty error" hidden class="muted">Select a property to trace its figures.</p>
+    <table data-state="success"><thead><tr><th>Unit</th><th class="num">Rent</th><th>File &middot; line</th></tr></thead><tbody>
+      <tr><td>101</td><td class="num">18,450.00</td><td>keelridge-estates_2026-10.csv &middot; 2<div class="raw">KR-01,Keelridge Quay,101,Saltmarsh Bakery,2024-03-01,...</div></td></tr>
+      <tr><td>102</td><td class="num">15,200.00</td><td>keelridge-estates_2026-10.csv &middot; 3</td></tr>
+      <tr><td>103</td><td class="num">21,075.50</td><td>keelridge-estates_2026-10.csv &middot; 4</td></tr>
+      <tr><td>104</td><td class="num">0.00</td><td>keelridge-estates_2026-10.csv &middot; 5</td></tr>
+    </tbody></table>
+    <p class="muted" data-state="success" style="font-size:12px">Job run da327469 &middot; sum 54,725.50 = figure on the dashboard</p>
+  </aside>
+
+  <section class="card wide" aria-labelledby="t-runs">
+    <h2 id="t-runs">Job runs</h2>
+    <div data-state="loading" hidden aria-busy="true"><div class="skel"></div><div class="skel"></div></div>
+    <p data-state="empty" hidden class="muted">No job runs yet.</p>
+    <div data-state="error" hidden class="note">Could not load job runs. <button class="primary">Retry</button></div>
+    <div class="scroll" data-state="success"><table>
+      <thead><tr><th>Started</th><th>File</th><th>Status</th><th class="num">Read</th><th class="num">Written</th><th class="num">Rejected</th><th class="num">ms</th><th>Message</th></tr></thead>
+      <tbody>
+        <tr><td>06:02</td><td>tidewater-living_2026-10_v2.csv</td><td><span class="chip ok">&#10003; loaded</span></td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="num">21</td><td>reconciled and loaded</td></tr>
+        <tr><td>06:01</td><td>tidewater-living_2026-10_v1-bad-total.csv</td><td><span class="chip bad">&#10005; quarantined</span></td><td class="num">6</td><td class="num">0</td><td class="num">6</td><td class="num">7</td><td>rows sum to 1,412,300.00 annual rent but the total row states 1,408,300.00</td></tr>
+        <tr><td>06:01</td><td>marlowe-bay_2026-10.csv</td><td><span class="chip warn">&#9888; loaded, rejects</span></td><td class="num">9</td><td class="num">8</td><td class="num">1</td><td class="num">25</td><td>reconciled and loaded; 1 row(s) quarantined</td></tr>
+        <tr><td>06:00</td><td>keelridge-estates_2026-10.csv</td><td><span class="chip ok">&#10003; loaded</span></td><td class="num">8</td><td class="num">8</td><td class="num">0</td><td class="num">26</td><td>reconciled and loaded</td></tr>
+      </tbody></table></div>
+  </section>
+</main>
+<script>
+  document.querySelectorAll('.switch button').forEach((b) => b.addEventListener('click', () => {
+    const s = b.dataset.s;
+    document.querySelectorAll('.switch button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    document.querySelectorAll('[data-state]').forEach((el) => { el.hidden = !el.dataset.state.split(' ').includes(s); });
+  }));
+</script>
+</body>
+</html>
